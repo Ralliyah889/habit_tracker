@@ -1,0 +1,132 @@
+┌─────────────────────────────────────────────────────────────────┐
+│                    HABIT TRACKER API STRUCTURE                  │
+└─────────────────────────────────────────────────────────────────┘
+
+📁 habit-tracker-api/
+│
+├── 📄 server.js                    # Main entry point
+│   ├── Loads environment variables
+│   ├── Connects to MongoDB
+│   ├── Sets up Express middleware
+│   └── Mounts routes
+│
+├── 📁 config/
+│   └── 📄 db.js                    # MongoDB connection logic
+│
+├── 📁 models/                      # Database schemas
+│   ├── 📄 User.js                  # User schema (name, email, password, role)
+│   ├── 📄 Habit.js                 # Habit schema (name, category, frequency)
+│   └── 📄 HabitLog.js              # Log schema (habitId, date, completed)
+│
+├── 📁 controllers/                 # Business logic
+│   ├── 📄 authController.js        # Register & Login logic
+│   ├── 📄 habitController.js       # CRUD operations for habits
+│   └── 📄 logController.js         # Logging & streak calculation
+│
+├── 📁 routes/                      # API endpoints
+│   ├── 📄 authRoutes.js            # /api/auth/register, /api/auth/login
+│   ├── 📄 habitRoutes.js           # /api/habits (GET, POST, PUT, DELETE)
+│   └── 📄 logRoutes.js             # /api/logs (POST, GET)
+│
+├── 📁 middleware/                  # Custom middleware
+│   ├── 📄 auth.js                  # JWT verification & role checking
+│   └── 📄 errorHandler.js          # Global error handling
+│
+├── 📄 .env                         # Environment variables
+├── 📄 .gitignore                   # Git ignore rules
+├── 📄 package.json                 # Dependencies
+├── 📄 README.md                    # Full documentation
+├── 📄 QUICK_START.md               # Quick start guide
+└── 📄 Habit-Tracker-API.postman_collection.json  # Postman tests
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│                        REQUEST FLOW                             │
+└─────────────────────────────────────────────────────────────────┘
+
+1. CLIENT REQUEST
+   │
+   ↓
+2. SERVER.JS (Express)
+   │
+   ↓
+3. MIDDLEWARE (auth.js) ──→ Verify JWT Token
+   │
+   ↓
+4. ROUTES (authRoutes.js, habitRoutes.js, logRoutes.js)
+   │
+   ↓
+5. CONTROLLERS (authController.js, habitController.js, logController.js)
+   │
+   ↓
+6. MODELS (User.js, Habit.js, HabitLog.js) ──→ MongoDB
+   │
+   ↓
+7. RESPONSE TO CLIENT
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│                      DATABASE STRUCTURE                         │
+└─────────────────────────────────────────────────────────────────┘
+
+┌──────────────┐         ┌──────────────┐         ┌──────────────┐
+│    USERS     │         │    HABITS    │         │  HABIT LOGS  │
+├──────────────┤         ├──────────────┤         ├──────────────┤
+│ _id          │◄────────│ userId       │◄────────│ habitId      │
+│ name         │         │ name         │         │ date         │
+│ email        │         │ category     │         │ completed    │
+│ password     │         │ frequency    │         │ createdAt    │
+│ role         │         │ startDate    │         │ updatedAt    │
+│ createdAt    │         │ createdAt    │         └──────────────┘
+│ updatedAt    │         │ updatedAt    │
+└──────────────┘         └──────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│                         API ENDPOINTS                           │
+└─────────────────────────────────────────────────────────────────┘
+
+🔓 PUBLIC ROUTES (No authentication required)
+├── POST   /api/auth/register      # Register new user
+└── POST   /api/auth/login          # Login user
+
+🔒 PROTECTED ROUTES (Requires JWT token)
+├── POST   /api/habits              # Create new habit
+├── GET    /api/habits              # Get all user's habits
+├── PUT    /api/habits/:id          # Update specific habit
+├── DELETE /api/habits/:id          # Delete specific habit
+├── POST   /api/logs                # Mark habit completed
+└── GET    /api/logs/:habitId       # Get habit progress & streak
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│                    AUTHENTICATION FLOW                          │
+└─────────────────────────────────────────────────────────────────┘
+
+REGISTER:
+User → POST /api/auth/register → Hash Password → Save to DB → Return JWT
+
+LOGIN:
+User → POST /api/auth/login → Compare Password → Return JWT
+
+PROTECTED ROUTE:
+User → Send JWT in Header → Verify Token → Allow Access → Return Data
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│                      STREAK CALCULATION                         │
+└─────────────────────────────────────────────────────────────────┘
+
+1. Get all logs for a habit (sorted by date, newest first)
+2. Start from today
+3. Check if habit was completed today
+4. If yes, increment streak and check yesterday
+5. If no, streak = 0
+6. Continue checking previous days until a gap is found
+7. Return final streak count
+
+Example:
+Today (Jan 15): ✅ Completed → Streak = 1
+Yesterday (Jan 14): ✅ Completed → Streak = 2
+Jan 13: ✅ Completed → Streak = 3
+Jan 12: ❌ Not completed → STOP → Final Streak = 3

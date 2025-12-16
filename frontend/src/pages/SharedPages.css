@@ -1,0 +1,518 @@
+/* ========== SHARED PAGES STYLES ========== */
+
+/* Styles for Habits, Progress, and Insights pages */
+
+:root {
+    --color-primary: #6366f1;
+    --color-primary-dark: #4f46e5;
+    --color-success: #10b981;
+    --color-danger: #ef4444;
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
+
+/* Base */
+.page-container {
+    min-height: 100vh;
+    background-color: var(--color-gray-50);
+    font-family: var(--font-sans);
+}
+
+/* Page Content */
+.page-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-xl);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-xl);
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-xs);
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--color-gray-600);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* ========== HABITS PAGE ========== */
+
+.habits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+}
+
+.habit-card {
+    background-color: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: all 0.2s;
+}
+
+.habit-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.habit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-lg);
+}
+
+.habit-card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+}
+
+.habit-badge {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-700);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.habit-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.habit-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-label {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+}
+
+.detail-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+}
+
+.habit-card-actions {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.btn-edit,
+.btn-delete {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    background-color: white;
+    border: 1px solid var(--color-gray-300);
+    color: var(--color-gray-700);
+}
+
+.btn-edit:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn-delete {
+    background-color: white;
+    border: 1px solid var(--color-danger);
+    color: var(--color-danger);
+}
+
+.btn-delete:hover {
+    background-color: var(--color-danger);
+    color: white;
+}
+
+/* ========== PROGRESS PAGE ========== */
+
+.progress-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+}
+
+.stat-card {
+    background-color: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-sm);
+}
+
+.stat-value-large {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-sm);
+}
+
+.stat-detail {
+    font-size: 0.875rem;
+    color: var(--color-gray-500);
+}
+
+.stat-bar {
+    height: 8px;
+    background-color: var(--color-gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: var(--space-md);
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.section-card {
+    background-color: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-lg);
+}
+
+.weekly-chart {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--space-md);
+}
+
+.weekly-day-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.day-bar-container {
+    width: 100%;
+    height: 120px;
+    background-color: var(--color-gray-100);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.day-bar {
+    width: 100%;
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    transition: height 0.3s ease;
+}
+
+.day-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+}
+
+.day-count {
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+}
+
+.monthly-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.monthly-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.monthly-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    min-width: 80px;
+}
+
+.monthly-bar-container {
+    flex: 1;
+    height: 12px;
+    background-color: var(--color-gray-200);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.monthly-bar {
+    height: 100%;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.monthly-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    min-width: 50px;
+    text-align: right;
+}
+
+.message-card {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 100%);
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+}
+
+.message-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-md);
+}
+
+.message-text {
+    font-size: 1rem;
+    color: var(--color-gray-700);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ========== INSIGHTS PAGE ========== */
+
+.insights-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.insight-card {
+    background-color: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+}
+
+.insight-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-lg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.best-icon {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.streak-icon {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.day-icon {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.insight-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.insight-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-lg);
+}
+
+.insight-details {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+}
+
+.insight-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.suggestions-section {
+    background-color: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+}
+
+.suggestions-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.suggestion-item {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+}
+
+.suggestion-number {
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.suggestion-text {
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.summary-card {
+    background-color: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+}
+
+.summary-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-md);
+}
+
+.summary-text {
+    font-size: 1rem;
+    color: var(--color-gray-700);
+    line-height: 1.7;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 768px) {
+    .page-content {
+        padding: var(--space-md);
+    }
+
+    .page-header {
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .habits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .weekly-chart {
+        gap: var(--space-sm);
+    }
+
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+}
