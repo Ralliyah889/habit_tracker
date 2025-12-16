@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // Base URL for all API requests
 // Base URL: Use environment variable in production, fallback to localhost in dev
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001'
 
 // Create axios instance with default config
 const api = axios.create({
@@ -48,13 +48,13 @@ api.interceptors.response.use(
 
 // Register new user
 export const registerUser = async (userData) => {
-    const response = await api.post('/auth/register', userData)
+    const response = await api.post('/api/auth/register', userData)
     return response.data
 }
 
 // Login user
 export const loginUser = async (credentials) => {
-    const response = await api.post('/auth/login', credentials)
+    const response = await api.post('/api/auth/login', credentials)
     return response.data
 }
 
