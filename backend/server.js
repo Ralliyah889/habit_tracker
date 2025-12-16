@@ -18,6 +18,13 @@ const gamificationRoutes = require('./routes/gamificationRoutes');
 // Load environment variables from .env file
 dotenv.config();
 
+// Check essential environment variables
+console.log('--- Environment Check ---');
+console.log(`MONGO_URI detected: ${process.env.MONGO_URI ? 'YES' : 'NO'}`);
+console.log(`JWT_SECRET detected: ${process.env.JWT_SECRET ? 'YES' : 'NO'}`);
+console.log(`JWT_EXPIRE detected: ${process.env.JWT_EXPIRE ? 'YES' : 'NO'}`);
+console.log('-------------------------');
+
 // Connect to MongoDB database
 connectDB();
 
