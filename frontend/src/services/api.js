@@ -3,7 +3,13 @@ import axios from 'axios'
 
 // Base URL for all API requests
 // Base URL: Use environment variable in production, fallback to localhost in dev
-const API_URL = import.meta.env.VITE_API_URL || 'https://habit-tracker-nqym.onrender.com/api'
+// Base URL: Use environment variable in production, fallback to localhost in dev
+let API_URL = import.meta.env.VITE_API_URL || 'https://habit-tracker-nqym.onrender.com/api'
+
+// Ensure API_URL ends with /api (fixes 404 error if user forgot to add it in env vars)
+if (!API_URL.endsWith('/api')) {
+    API_URL = `${API_URL.replace(/\/$/, '')}/api`;
+}
 
 
 // Create axios instance with default config
