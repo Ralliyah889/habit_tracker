@@ -140,19 +140,25 @@ function Dashboard() {
                     <div className="nav-right">
                         <button
                             onClick={toggleTheme}
+                            className="theme-toggle-btn"
                             style={{
-                                background: 'transparent',
-                                border: 'none',
+                                background: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                                border: `1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)'}`,
                                 cursor: 'pointer',
                                 fontSize: '1.2rem',
-                                padding: '0.5rem',
+                                width: '40px',
+                                height: '40px',
                                 borderRadius: '50%',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                color: 'var(--text-secondary)'
+                                color: 'var(--text-primary)',
+                                transition: 'all 0.2s ease',
+                                flexShrink: 0
                             }}
                             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+                            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                         >
                             {theme === 'dark' ? '☀️' : '🌙'}
                         </button>

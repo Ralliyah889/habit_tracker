@@ -39,5 +39,8 @@ const habitLogSchema = new mongoose.Schema(
 // This prevents duplicate entries for the same habit on the same day
 habitLogSchema.index({ habitId: 1, date: 1 }, { unique: true });
 
+// Performance Index: Speeds up streak calculation which filters by habitId + completed and sorts by date
+habitLogSchema.index({ habitId: 1, completed: 1, date: -1 });
+
 // Create and export the HabitLog model
 module.exports = mongoose.model('HabitLog', habitLogSchema);

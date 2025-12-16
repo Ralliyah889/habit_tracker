@@ -9,6 +9,7 @@ const habitSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User', // This links to the User model
             required: true,
+            index: true, // Optimize queries by user
         },
 
         // Name of the habit (e.g., "Morning Exercise")
